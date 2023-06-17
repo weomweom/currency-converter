@@ -31,6 +31,8 @@
     font-size: 18px;
     list-style-type: none;
     cursor: pointer;
+    background-color:rgb(246, 246, 246);
+    transition: background-color .3s;
 }
 
 .block ul .active {
@@ -44,8 +46,10 @@
     font-size: 30px;
     font-weight: 600;
     border: 0;
+    border-top: 3px solid rgb(188, 188, 188);;
     background-color:rgb(232, 232, 232);
     padding: 0 10px;
+    outline: none;
 }
 
 input::-webkit-outer-spin-button,
