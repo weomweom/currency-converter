@@ -1,48 +1,59 @@
-import Block from "./Block";
 import {useState, useEffect} from 'react';
+import Block from "./Block";
+import ACCESS_KEY from "./ACCESS_KEY";
 
 function App() {
-  const [rates, setRates] = useState({
-    "rates": {
-      "USD": 1,
-      "EUR": 0.91,
-      "PLN": 4.06
-  }});
-
+  //useRef instead of useState?
+  const [rates, setRates]= useState({
+    'USD': 1,
+    'EUR': 0.91,
+    'PLN': 4.82
+    //17.06.2023
+  });
+/*
+  useEffect(() => {
+    fetch(`http://data.fixer.io/api/latest?access_key=${ACCESS_KEY}`)
+      .then(response => response.json())
+      .then(data => {
+        setRates(data.rates);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+*/
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [toCurrency, setToCurrency] = useState("PLN");
-  const [fromValueCurrency, setFromValueCurrency] = useState(0);
-  const [toValueCurrency, setToValueCurrency] = useState(0);
+  const [fromValueCurrency, setFromValueCurrency] = useState();
+  const [toValueCurrency, setToValueCurrency] = useState();
 
   const fromOnClick = (currency) => {
     setFromCurrency(currency);
   };
 
-  const fromCalcValue = (value) => {
-    const price = value / rates.rates[fromCurrency];
-    const result = price * rates.rates[toCurrency];
-    setFromValueCurrency(value);
-    setToValueCurrency(result);
-  }
-
   const toOnClick = (currency) => {
     setToCurrency(currency);
   };
 
+  const fromCalcValue = (value) => {
+    const price = value / rates[fromCurrency];
+    const result = price * rates[toCurrency];
+    setFromValueCurrency(value);
+    setToValueCurrency(Math.round(result*1000)/1000);
+  };
+
   const toCalcValue = (value) => {
-    const price = value / rates.rates[toCurrency];
-    const result = price * rates.rates[fromCurrency];
+    const price = value / rates[toCurrency];
+    const result = price * rates[fromCurrency];
     setToValueCurrency(value);
-    setFromValueCurrency(result);
-  }
+    setFromValueCurrency(Math.round(result*1000)/1000);
+  };
 
   useEffect(() => {
-    //console.log("from currency changed " + fromCurrency);
     fromCalcValue(fromValueCurrency);
-  }, [fromCurrency]);
+  }, [fromCurrency], [toCurrency]);
 
   useEffect(() => {
-    //console.log("to currency changed " + toCurrency);
     toCalcValue(toValueCurrency);
   }, [toCurrency]);
 

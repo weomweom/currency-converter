@@ -18,6 +18,7 @@
 }
 
 .block ul {
+    width: 100%;
     margin: 0;
     padding: 0;
 }
@@ -26,7 +27,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 33.3%;
     height: 50px;
     font-size: 18px;
     list-style-type: none;
