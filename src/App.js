@@ -3,16 +3,13 @@ import Block from "./Block";
 import ACCESS_KEY from "./ACCESS_KEY";
 
 function App() {
-  //add a drop-down list!!!
-  const rates = useRef({});
-  /*
-  const [rates, setRates]= useState({
+  //create a regExp?
+  const rates = useRef({
     'USD': 1,
     'EUR': 0.91,
     'PLN': 4.6
     //data for testing
   });
-  */
 
   useEffect(() => {
     fetch(`http://data.fixer.io/api/latest?access_key=${ACCESS_KEY}`)
@@ -27,7 +24,7 @@ function App() {
   }, []);
 
   const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("PLN");
+  const [toCurrency, setToCurrency] = useState("EUR");
   const [fromValueCurrency, setFromValueCurrency] = useState(1);
   const [toValueCurrency, setToValueCurrency] = useState();
 
@@ -35,7 +32,6 @@ function App() {
     let fromCurrencyHelper = fromCurrency;
     setFromCurrency(toCurrency)
     setToCurrency(fromCurrencyHelper);
-    setFromValueCurrency(toValueCurrency);
   }
 
   const fromOnClick = (currency) => {
@@ -50,20 +46,21 @@ function App() {
     const price = value / rates.current[fromCurrency];
     const result = price * rates.current[toCurrency];
     setFromValueCurrency(value);
-    setToValueCurrency(Math.round(result*1000)/1000);
+    setToValueCurrency(Math.round(result*100)/100);
   };
 
   const toCalcValue = (value) => {
     const price = value / rates.current[toCurrency];
     const result = price * rates.current[fromCurrency];
     setToValueCurrency(value);
-    setFromValueCurrency(Math.round(result*1000)/1000);
+    setFromValueCurrency(Math.round(result*100)/100);
   };
 
   useEffect(() => {
     fromCalcValue(fromValueCurrency);
   }, [fromCurrency, toCurrency]);
 
+//      
   return (
     <div className="App">
       <Block
@@ -71,15 +68,13 @@ function App() {
         currency={fromCurrency}
         calculateValue={fromCalcValue}
         value={fromValueCurrency}
-        disabled={false}
       />
-      <button onClick={switchOnclick}>↔</button>
+      <button onClick={switchOnclick}></button>
       <Block
         onClick={toOnClick}
         currency={toCurrency}
         calculateValue={toCalcValue}
         value={toValueCurrency}
-        disabled={true}
       />
     </div>
   );

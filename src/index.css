@@ -19,7 +19,7 @@ button {
     border: 0;
     font-size: 18px;
     border-radius: 15%;
-    background-color:rgb(216, 216, 216);
+    background: rgb(216, 216, 216) url('double_arrow.png') no-repeat center / 20px;
     cursor: pointer;
 }
 
@@ -29,26 +29,69 @@ button {
 }
 
 .block ul {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    height: 50px;
     margin: 0;
     padding: 0;
 }
 
-.block ul li {
-    display: inline-flex;
+.block ul .avticeCurrency{
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 33.334%;
-    height: 50px;
+    width: 80%;
+    height: 100%;
     font-size: 18px;
     list-style-type: none;
     cursor: pointer;
-    background-color:rgb(246, 246, 246);
+    background-color: greenyellow;
     transition: background-color .3s;
 }
 
-.block ul .active {
+.active {
     background-color: greenyellow;
+}
+
+.block ul .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    background:rgb(246, 246, 246) url('arrow.png') no-repeat center / 20px;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.block ul li ul {
+    display: none;
+}
+
+.block ul li ul li{
+    width: 100%;
+    height: 12px;
+    text-align: center;
+    padding: 8px 0;
+}
+
+.block ul .arrow:hover {
+    transform: rotateZ(180deg);
+}
+
+.block ul .arrow:hover ul{
+    display: initial;
+    width: 100%;
+    height: 150px;
+    max-height: 150px;
+    overflow-x: hidden;
+    position: relative;
+    top: 100px;
+    list-style-type: none;
+    font-size: 15px;
+    background-color:rgb(246, 246, 246);
+    transform: rotateZ(180deg);
 }
 
 .block input {
@@ -72,4 +115,8 @@ input::-webkit-inner-spin-button {
  
 input[type=number] {
     -moz-appearance: textfield;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
 }

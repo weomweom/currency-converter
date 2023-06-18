@@ -4,7 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
+
+# files
 ACCESS_KEY.js
+defaultCurrencies.js
+
 # testing
 /coverage
 
