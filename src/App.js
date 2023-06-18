@@ -7,8 +7,8 @@ function App() {
   const [rates, setRates]= useState({
     'USD': 1,
     'EUR': 0.91,
-    'PLN': 4.82
-    //17.06.2023
+    'PLN': 4.6
+    //data for testing
   });
 /*
   useEffect(() => {
@@ -24,8 +24,15 @@ function App() {
 */
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [toCurrency, setToCurrency] = useState("PLN");
-  const [fromValueCurrency, setFromValueCurrency] = useState();
+  const [fromValueCurrency, setFromValueCurrency] = useState(1);
   const [toValueCurrency, setToValueCurrency] = useState();
+
+  const switchOnclick = () => {
+    let fromCurrencyHelper = fromCurrency;
+    setFromCurrency(toCurrency)
+    setToCurrency(fromCurrencyHelper);
+    setFromValueCurrency(toValueCurrency);
+  }
 
   const fromOnClick = (currency) => {
     setFromCurrency(currency);
@@ -51,11 +58,7 @@ function App() {
 
   useEffect(() => {
     fromCalcValue(fromValueCurrency);
-  }, [fromCurrency], [toCurrency]);
-
-  useEffect(() => {
-    toCalcValue(toValueCurrency);
-  }, [toCurrency]);
+  }, [fromCurrency, toCurrency]);
 
   return (
     <div className="App">
@@ -64,12 +67,15 @@ function App() {
         currency={fromCurrency}
         calculateValue={fromCalcValue}
         value={fromValueCurrency}
+        disabled={false}
       />
+      <button onClick={switchOnclick}>↔</button>
       <Block
         onClick={toOnClick}
         currency={toCurrency}
         calculateValue={toCalcValue}
         value={toValueCurrency}
+        disabled={true}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 
 const defaultCurrencies = ['PLN', 'USD', 'EUR'];
 
-const Block = ({onClick, currency, calculateValue, value}) => (
+const Block = ({onClick, currency, calculateValue, value, disabled}) => (
   <div className="block">
     <ul>
       {defaultCurrencies.map((cur) => (
@@ -20,6 +20,7 @@ const Block = ({onClick, currency, calculateValue, value}) => (
       value={value}
       type="number"
       placeholder={0}
+      disabled={disabled}
     />
   </div>
 );

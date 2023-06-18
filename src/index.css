@@ -6,10 +6,21 @@
 
 .App {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 0.1fr 1fr;
     grid-column-gap: 15px;
-    width: 615px;
+    width: 600px;
     margin: 250px auto;
+}
+
+button {
+    width: 30px;
+    height: 30px;
+    margin-top: 47px;
+    border: 0;
+    font-size: 18px;
+    border-radius: 15%;
+    background-color:rgb(216, 216, 216);
+    cursor: pointer;
 }
 
 .block {
@@ -27,7 +38,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 33.3%;
+    width: 33.334%;
     height: 50px;
     font-size: 18px;
     list-style-type: none;
