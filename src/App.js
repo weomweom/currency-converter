@@ -12,10 +12,11 @@ function App() {
   });
 
   useEffect(() => {
-    fetch(`http://data.fixer.io/api/latest?access_key=${ACCESS_KEY}`)
+    fetch(`https://api.currencyapi.com/v3/latest?apikey=${ACCESS_KEY}`)
       .then(response => response.json())
       .then(data => {
-        rates.current = data.rates;
+        rates.current = data.data;
+        console.log(rates.current['USD'].value);
         fromCalcValue(fromValueCurrency);
       })
       .catch(error => {
@@ -23,8 +24,8 @@ function App() {
       });
   }, []);
 
-  const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("EUR");
+  const [fromCurrency, setFromCurrency] = useState('USD');
+  const [toCurrency, setToCurrency] = useState('EUR');
   const [fromValueCurrency, setFromValueCurrency] = useState(1);
   const [toValueCurrency, setToValueCurrency] = useState();
 
@@ -43,15 +44,15 @@ function App() {
   };
 
   const fromCalcValue = (value) => {
-    const price = value / rates.current[fromCurrency];
-    const result = price * rates.current[toCurrency];
+    const price = value / rates.current[fromCurrency].value;
+    const result = price * rates.current[toCurrency].value;
     setFromValueCurrency(value);
     setToValueCurrency(Math.round(result*100)/100);
   };
 
   const toCalcValue = (value) => {
-    const price = value / rates.current[toCurrency];
-    const result = price * rates.current[fromCurrency];
+    const price = value / rates.current[toCurrency].value;
+    const result = price * rates.current[fromCurrency].value;
     setToValueCurrency(value);
     setFromValueCurrency(Math.round(result*100)/100);
   };

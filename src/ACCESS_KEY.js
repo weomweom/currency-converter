@@ -1,3 +1,3 @@
-const ACCESS_KEY = '8907f2bdf453ae34891813092d1482c0';
+const ACCESS_KEY = 'V0TGybHh5HLTQwJ8ccTrhACrVRPX6rlciHen2oY5';
 
 export default ACCESS_KEY;

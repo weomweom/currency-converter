@@ -6,6 +6,7 @@
 .pnp.js
 
 # files
+ACCESS_KEY.js
 defaultCurrencies.js
 
 # testing
