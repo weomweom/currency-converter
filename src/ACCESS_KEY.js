@@ -1,0 +1,3 @@
+const ACCESS_KEY = '8907f2bdf453ae34891813092d1482c0';
+
+export default ACCESS_KEY;
