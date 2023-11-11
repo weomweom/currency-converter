@@ -16,7 +16,6 @@ function App() {
       .then(response => response.json())
       .then(data => {
         rates.current = data.data;
-        console.log(rates.current['USD'].value);
         fromCalcValue(fromValueCurrency);
       })
       .catch(error => {
@@ -26,8 +25,8 @@ function App() {
 
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('EUR');
-  const [fromValueCurrency, setFromValueCurrency] = useState(1);
-  const [toValueCurrency, setToValueCurrency] = useState();
+  const [fromValueCurrency, setFromValueCurrency] = useState('1');
+  const [toValueCurrency, setToValueCurrency] = useState('1');
 
   const switchOnclick = () => {
     let fromCurrencyHelper = fromCurrency;
@@ -64,19 +63,21 @@ function App() {
 //      
   return (
     <div className="App">
-      <Block
-        onClick={fromOnClick}
-        currency={fromCurrency}
-        calculateValue={fromCalcValue}
-        value={fromValueCurrency}
-      />
-      <button onClick={switchOnclick}></button>
-      <Block
-        onClick={toOnClick}
-        currency={toCurrency}
-        calculateValue={toCalcValue}
-        value={toValueCurrency}
-      />
+      <div className='container'>
+        <Block
+          onClick={fromOnClick}
+          currency={fromCurrency}
+          calculateValue={fromCalcValue}
+          value={fromValueCurrency}
+        />
+        <button onClick={switchOnclick}></button>
+        <Block
+          onClick={toOnClick}
+          currency={toCurrency}
+          calculateValue={toCalcValue}
+          value={toValueCurrency}
+        />
+      </div>
     </div>
   );
 }

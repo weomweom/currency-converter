@@ -5,21 +5,29 @@
 }
 
 .App {
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
     display: grid;
     grid-template-columns: 1fr 0.1fr 1fr;
     grid-column-gap: 15px;
-    width: 600px;
-    margin: 250px auto;
+    place-items: center;
+    max-width: 600px;
+    margin: auto;
+
 }
 
 button {
     width: 30px;
     height: 30px;
-    margin-top: 47px;
     border: 0;
     font-size: 18px;
     border-radius: 15%;
-    background: rgb(216, 216, 216) url('double_arrow.png') no-repeat center / 20px;
+    background: rgb(216, 216, 216) url('img/double_arrow.png') no-repeat center / 20px;
     cursor: pointer;
 }
 
@@ -60,9 +68,13 @@ button {
     align-items: center;
     width: 20%;
     height: 100%;
-    background:rgb(246, 246, 246) url('arrow.png') no-repeat center / 20px;
+    background:rgb(246, 246, 246) url('img/arrow.png') no-repeat center / 20px;
     list-style-type: none;
-    cursor: pointer;
+    cursor: pointer;    
+}
+
+.block ul .arrow li:hover{
+    background-color:rgb(232, 232, 232);
 }
 
 .block ul li ul {
@@ -119,4 +131,13 @@ input[type=number] {
 
 ::-webkit-scrollbar {
     width: 0px;
+}
+
+@media(max-width: 618px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr .5fr 1fr;
+        max-width: 400px;
+        width: calc(100% - 40px);
+    }
 }
