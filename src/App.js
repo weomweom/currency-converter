@@ -1,6 +1,7 @@
 import {useState, useEffect, useRef} from 'react';
-import Block from "./Block";
 import ACCESS_KEY from "./ACCESS_KEY";
+import CustomInput from './CustomInput';
+import swapImg from './img/double_arrow.png';
 
 function App() {
   //create a regExp?
@@ -64,14 +65,14 @@ function App() {
   return (
     <div className="App">
       <div className='container'>
-        <Block
+        <CustomInput
           onClick={fromOnClick}
           currency={fromCurrency}
           calculateValue={fromCalcValue}
           value={fromValueCurrency}
         />
-        <button onClick={switchOnclick}></button>
-        <Block
+        <button onClick={switchOnclick}><img src={swapImg}/></button>
+        <CustomInput
           onClick={toOnClick}
           currency={toCurrency}
           calculateValue={toCalcValue}
